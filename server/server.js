@@ -36,6 +36,11 @@ app.get('/guess', function(req, res){
   res.send(inputArray); // <- this route will return the array in the ()
 })
 
+
+
+
+
+// <POST LAND>----------------------------------------------------------------
 app.post('/guess', (req, res) => {
   console.log("req.body from POST", req.body);
 
@@ -52,7 +57,7 @@ app.post('/guess', (req, res) => {
   // send back a status code of 201
   res.sendStatus(201);
 });
-
+//</POST LAND>--------------------------------------------------------------
 
 
 

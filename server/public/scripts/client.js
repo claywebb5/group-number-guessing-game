@@ -121,6 +121,19 @@ function resetEverything() {
   console.log(theRando);
 }; // end of function
 
+// This will display old&new guesses, checks if guesses are correct, display winners
+function infoFromServer() {
+  $.ajax({
+    method: 'GET',
+    url: '/guess',
+  }).then(function(response){
+      console.log('Here are those guesses', response);
+      renderSongsToDom(response);
+  }).catch(function(response){
+      console.log('Didn\'t receive guesses');
+  })
+}; // End infoFromServer function
+
 
 /*
 ## Base Mode
