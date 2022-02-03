@@ -16,6 +16,21 @@ app.use(express.static('server/public'));
 //   vince: "vince"
 // }];
 
+// <FUNCTIONS> ------------------------------------
+let theRando = randomNumber(0,25);
+
+// random number generator
+function randomNumber(min, max){
+  return Math.floor(Math.random() * (1 + max - min) + min);
+};
+
+// </FUNCTIONS> -----------------------------------
+
+
+
+let newGuesses = [];
+let oldGuesses = [];
+let winners = [];
 
 app.get('/guess', function(req, res){
   res.send(inputArray); // <- this route will return the array in the ()
@@ -24,9 +39,28 @@ app.get('/guess', function(req, res){
 app.post('/guess', (req, res) => {
   console.log("req.body from POST", req.body);
 
+  console.log('pushing old guesses to the old array (if applicable)')
+  oldGuesses.push(newGuesses);
+  // {[{name: clay, number: #}, {name:Tony, number: #}, {name: Vince, number: #}, {name:Kelsey, number: #}]}
+
+  console.log("added new guesses to the new guesses array")
+  newGuesses = req.body;
+
+  // define theRando by calling randomNumber
+  randomNumber();
+
   // send back a status code of 201
   res.sendStatus(201);
 });
+
+
+
+
+
+
+
+
+
 
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)

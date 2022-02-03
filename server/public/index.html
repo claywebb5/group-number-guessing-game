@@ -11,13 +11,20 @@
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <h1>YOUR GAME HERE!</h1>
-    <input type="text" placeholder="Tony" id="tony-input">
+    <header>
+      <h1 id="gameHead">Guess a Number!</h1>
+    </header>
+    <div class="input-fields">
+      <input type="text" placeholder="Tony" id="tony-input">
     <input type="text" placeholder="Clay" id="clay-input">
     <input type="text" placeholder="Vince" id="vince-input">
     <input type="text" placeholder="Kelsey" id="kelsey-input">
+    </div>
+    <div class="the-buttons">
     <button id="guess-button">Guess!</button>
     <button id="reset-button">RESET</button>
+    </div>
+    
 
     <div id="total-guess-made">
       <h1>Total Guesses:<span id="guess-tracker"></span></h1>

@@ -1,7 +1,6 @@
 $(document).ready(handleReady);
 
-
-let theRando = randomNumber(0,25);
+theRando = 5;
 
 function handleReady() {
   console.log("jquery is loaded!")
@@ -12,12 +11,8 @@ function handleReady() {
   $('#reset-button').on('click', resetEverything);
 }; // end of function
 
-// random number generator
-function randomNumber(min, max){
-  return Math.floor(Math.random() * (1 + max - min) + min);
-};
 
-console.log('theRando is:', theRando);
+// console.log('theRando is:', theRando);
 
 // this function will check the input numbers against the randomly generated number.
 // first it assigns the input numbers to each person/object.
@@ -37,20 +32,17 @@ function randomNumberGenerator() {
   let kelsey = {
     name: 'Kelsey',
     number: Number($('#kelsey-input').val())
-  }
+  } 
 
   let group = [tony, clay, vince, kelsey];
   $.ajax({
     method: "POST",
     url: "/guess",
-    data: {
-      guessArray: group
-      }
+    data: {group} 
   }).then(function(response){
     console.log('SUCCESS!');
-
+    getInfo();
   })
-
 // This for loop will tell the user if they were higher or lower on their guess
   for (person of group) {
     if(person.number === theRando){
@@ -66,6 +58,26 @@ function randomNumberGenerator() {
 
 
 
+function getInfo() {
+$.ajax({
+  method: 'GET',
+  url: '/guess',
+}).then(function(response) {
+  console.log('Very Nice!');
+  randomNumberGenerator(response)
+
+  renderToDom(response);
+
+
+}) .catch(function(response) {
+  console.log('It sucks...');
+
+})
+}; // end of function
+
+
+
+
 let clicks = 0;
 function totalGuessTracker(){
   clicks ++;
@@ -75,10 +87,6 @@ function totalGuessTracker(){
 }; // End of totalGuessTracker function
 
 
-// $.ajax({
-//   method: "POST",
-
-// })
 
 
 
@@ -138,3 +146,4 @@ Take a moment to discuss with your team members why this is something that a cli
 Once you get it working, style it up, yo!
 
 */
+
