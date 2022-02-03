@@ -10,8 +10,30 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('server/public'));
 
 // GET & POST Routes go here
+// const inputArray =[{
+//   clay: "clay",
+//   tony: "tony",
+//   vince: "vince"
+// }];
+
+
+app.get('/', function(req, res){
+  res.send(inputArray); // <- this route will return the array in the ()
+})
+
+app.post("/", (req, res) => {
+  console.log("req.body from POST", req.body);
+
+  // send back a status code of 201
+  res.sendStatus(201);
+});
+
 
 
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
 })
+
+
+
+
