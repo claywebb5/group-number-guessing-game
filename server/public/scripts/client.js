@@ -6,15 +6,16 @@ $(document).ready(handleReady);
 //   vince: "vince"
 // }];
 
+let theRando = randomNumber(0,25);
+
 function handleReady() {
   console.log("jquery is loaded!")
 $('#guess-button').on('click', guessButtonDo);
 $('#guess-button').on('click', randomNumberGenerator);
 
-
 // displayDetailsArea();
 
-console.log(randomNumber(0,25));
+
 }
 
 function guessButtonDo() {
@@ -24,28 +25,29 @@ function guessButtonDo() {
 
 
 
+console.log('theRando is:', theRando);
 
-
-let tony = (`${'#tony-input'}`);
-let vince = (`${'#vince-input'}`);
 
 
 // this function will create a random number and checks if we got it right
 // This function will tell the user if they were higher or lower on their guess
 function randomNumberGenerator() {
-  // for (let i=0,i<array.length;i++) {
-  //   if (i === randomNumber(0,25)) {
-  //   } // end if statement
-  // } // end for loop 
   let clay = Number($('#clay-input').val());
+  let tony = Number($('#tony-input').val());
+  let vince = Number($('#vince-input').val());
+  let kelsey = Number($('#kelsey-input').val());
+  let group
+  
+  
   console.log(clay)
-  if(clay === 25){
+  if(clay === theRando){
     alert('Correct');
-  } else if(clay < 10){
+  } else if(clay < theRando){
     alert('Higher Clay');
   } else {
     alert('Lower Clay')
   };
+  
 
 
   // for(let guessedNumT of tony){
@@ -59,22 +61,7 @@ function randomNumberGenerator() {
 } // end randomNumberGenerator function
 
 
-/*
 
-function randomNumberGenerator() {
- for(let guessedNumC of clay){
-
-    if(clay === randomNumber(0,25)){
-      alert('Correct');
-    } else if(guessedNumC < randomNumber(0,25)){
-      alert('Higher Clay');
-    } else {
-      alert('Lower Clay')
-    };
-
-  }; // end Clay for of loop
-
-  */
 
 
 
@@ -112,12 +99,10 @@ function randomNumberGenerator() {
 // }; // end of function
 
 
-
 // random number generator
 function randomNumber(min, max){
   return Math.floor(Math.random() * (1 + max - min) + min);
 }
-
 
 
 
