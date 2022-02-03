@@ -28,8 +28,6 @@ app.post('/guess', (req, res) => {
   res.sendStatus(201);
 });
 
-
-
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
 })

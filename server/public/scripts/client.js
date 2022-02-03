@@ -5,28 +5,19 @@ let theRando = randomNumber(0,25);
 
 function handleReady() {
   console.log("jquery is loaded!")
-$('#guess-button').on('click', guessButtonDo);
-$('#guess-button').on('click', randomNumberGenerator);
-
-
+  $('#guess-button').on('click', displayDetailsArea);
+  $('#guess-button').on('click', randomNumberGenerator);
+  $('#guess-button').on('click', totalGuessTracker);
+  $('#guess-button').on('click', emptyInputs);
+  $('#reset-button').on('click', resetEverything);
 }; // end of function
-
-// this happens when guess button is pressed
-function guessButtonDo() {
-  console.log('Guess works!');
-
-}; // end of loop
 
 // random number generator
 function randomNumber(min, max){
   return Math.floor(Math.random() * (1 + max - min) + min);
-}
-
-
+};
 
 console.log('theRando is:', theRando);
-
-
 
 // this function will check the input numbers against the randomly generated number.
 // first it assigns the input numbers to each person/object.
@@ -60,46 +51,28 @@ function randomNumberGenerator() {
 
   })
 
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
 // This for loop will tell the user if they were higher or lower on their guess
   for (person of group) {
     if(person.number === theRando){
-      alert(`Correct ${person.name}`);
+      console.log(`Correct ${person.name}`);
+      $('#winner').append(`<p>${person.name}</p>`)
     } else if(person.number < theRando){
-      alert(`Higher ${person.name}`);
+      console.log(`Higher ${person.name}`);
     } else {
-      alert(`Lower ${person.name}`)
+      console.log(`Lower ${person.name}`)
     };
   }
-} // End of randomNumberGenerator function
+}; // End of randomNumberGenerator function
 
 
 
+let clicks = 0;
+function totalGuessTracker(){
+  clicks ++;
+  $('#guess-tracker').empty();
+  $('#guess-tracker').append(clicks);
 
-
-
-
-
-
-
-
-
-
+}; // End of totalGuessTracker function
 
 
 // $.ajax({
@@ -108,35 +81,37 @@ function randomNumberGenerator() {
 // })
 
 
-/*
 
 // this function will append the details area to the DOM
-function displayDetailsArea() {
-    // this will append history of guess(s) to the guess-history 
-    $('#guess-history').append(`<tr><td><p>`
-    $('clay-input').val(),
-    $('tony-input').val(),
-    $('vince-input').val(),
-    $('kelsey-input').val(),
-  `</p></td></tr>`) // end of append
+function displayDetailsArea() {     
+  // this will append history of guess(s) to the guess-history 
+  $('#guess-history').append(`<tr><td><p>
+  ${$('#clay-input').val()},
+  ${$('#tony-input').val()},
+  ${$('#vince-input').val()},
+  ${$('#kelsey-input').val()}
+</p></td></tr>`) // end of append
+  }; // end of function
 
+
+ 
+// will empty inputs
+function emptyInputs() {
   // empty the inputs 
-    $('clay-input').val(''),
-    $('tony-input').val(''),
-    $('vince-input').val(''),
-    $('kelsey-input').val(),
-  
-
+  $('#clay-input').val('');
+  $('#tony-input').val('');
+  $('#vince-input').val('');
+  $('#kelsey-input').val('');
 }; // end of function
 
-*/
-
-
-
-
-
-
-
+// this will empty guess history and give a new random number
+function resetEverything() {
+  theRando = randomNumber(0,25);
+  emptyInputs();
+  $('#guess-history').empty();
+  $('#guess-tracker').empty();
+  console.log(theRando);
+}; // end of function
 
 
 /*
