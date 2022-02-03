@@ -1,10 +1,5 @@
 $(document).ready(handleReady);
 
-// const inputArray =[{
-//   clay: "clay",
-//   tony: "tony",
-//   vince: "vince"
-// }];
 
 let theRando = randomNumber(0,25);
 
@@ -13,15 +8,19 @@ function handleReady() {
 $('#guess-button').on('click', guessButtonDo);
 $('#guess-button').on('click', randomNumberGenerator);
 
-// displayDetailsArea();
 
+}; // end of function
 
-}
-
+// this happens when guess button is pressed
 function guessButtonDo() {
   console.log('Guess works!');
 
 }; // end of loop
+
+// random number generator
+function randomNumber(min, max){
+  return Math.floor(Math.random() * (1 + max - min) + min);
+}
 
 
 
@@ -32,33 +31,39 @@ console.log('theRando is:', theRando);
 // this function will create a random number and checks if we got it right
 // This function will tell the user if they were higher or lower on their guess
 function randomNumberGenerator() {
-  let clay = Number($('#clay-input').val());
-  let tony = Number($('#tony-input').val());
-  let vince = Number($('#vince-input').val());
-  let kelsey = Number($('#kelsey-input').val());
-  let group
+  let clay = {
+    name: 'clay',
+    number: Number($('#clay-input').val())
+  }
+  let tony = {
+    name: 'tony',
+    number: Number($('#tony-input').val())
+  }
+  let vince = {
+    name: 'vince',
+    number: Number($('#vince-input').val())
+  }
+  let kelsey = {
+    name: 'kelsey',
+    number: Number($('#kelsey-input').val())
+  }
+  let group = [clay, tony, vince, kelsey];
   
+// console.log(clay)
+
+  for (person of group) {
+    if(person.number === theRando){
+      alert(`Correct ${person.name}`);
+    } else if(person < theRando){
+      alert(`Higher ${person.name}`);
+    } else {
+      alert(`Lower ${person.name}`)
+    };
+  }
   
-  console.log(clay)
-  if(clay === theRando){
-    alert('Correct');
-  } else if(clay < theRando){
-    alert('Higher Clay');
-  } else {
-    alert('Lower Clay')
-  };
-  
 
 
-  // for(let guessedNumT of tony){
-
-  // }; // end Tony for of loop
-
-  // for(let guessedNumV of vince){
-
-  // }; // end Vince for of loop
-
-} // end randomNumberGenerator function
+} // End of randomNumberGenerator function
 
 
 
@@ -81,28 +86,27 @@ function randomNumberGenerator() {
 
 
 
-
+/*
 // this function will append the details area to the DOM
-// function displayDetailsArea() {
-//   // this will append history of guess(s) to the guess-history 
-//   $('#guess-history').append(`<p>
-//   $('clay-input').val(),
-//   $('tony-input').val(),
-//   $('vince-input').val(),
-// </p>`) // end of append
+function displayDetailsArea() {
+  // this will append history of guess(s) to the guess-history 
+  $('#guess-history').append(`<p>
+  $('clay-input').val(),
+  $('tony-input').val(),
+  $('vince-input').val(),
+</p>`) // end of append
 
-// // empty the inputs 
-// $('clay-input').val(''),
-//   $('tony-input').val(''),
-//   $('vince-input').val(''),
+// empty the inputs 
+  $('clay-input').val(''),
+  $('tony-input').val(''),
+  $('vince-input').val(''),
 
-// }; // end of function
+}; // end of function
+
+*/
 
 
-// random number generator
-function randomNumber(min, max){
-  return Math.floor(Math.random() * (1 + max - min) + min);
-}
+
 
 
 
