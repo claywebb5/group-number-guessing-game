@@ -28,41 +28,64 @@ console.log('theRando is:', theRando);
 
 
 
-// this function will create a random number and checks if we got it right
-// This function will tell the user if they were higher or lower on their guess
+// this function will check the input numbers against the randomly generated number.
+// first it assigns the input numbers to each person/object.
 function randomNumberGenerator() {
   let clay = {
-    name: 'clay',
+    name: 'Clay',
     number: Number($('#clay-input').val())
   }
   let tony = {
-    name: 'tony',
+    name: 'Tony',
     number: Number($('#tony-input').val())
   }
   let vince = {
-    name: 'vince',
+    name: 'Vince',
     number: Number($('#vince-input').val())
   }
   let kelsey = {
-    name: 'kelsey',
+    name: 'Kelsey',
     number: Number($('#kelsey-input').val())
   }
-  let group = [clay, tony, vince, kelsey];
-  
-// console.log(clay)
 
+  let group = [tony, clay, vince, kelsey];
+  $.ajax({
+    method: "POST",
+    url: "/guess",
+    data: {
+      guessArray: group
+      }
+  }).then(function(response){
+    console.log('SUCCESS!');
+
+  })
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+// This for loop will tell the user if they were higher or lower on their guess
   for (person of group) {
     if(person.number === theRando){
       alert(`Correct ${person.name}`);
-    } else if(person < theRando){
+    } else if(person.number < theRando){
       alert(`Higher ${person.name}`);
     } else {
       alert(`Lower ${person.name}`)
     };
   }
-  
-
-
 } // End of randomNumberGenerator function
 
 
@@ -85,21 +108,24 @@ function randomNumberGenerator() {
 // })
 
 
-
 /*
+
 // this function will append the details area to the DOM
 function displayDetailsArea() {
-  // this will append history of guess(s) to the guess-history 
-  $('#guess-history').append(`<p>
-  $('clay-input').val(),
-  $('tony-input').val(),
-  $('vince-input').val(),
-</p>`) // end of append
+    // this will append history of guess(s) to the guess-history 
+    $('#guess-history').append(`<tr><td><p>`
+    $('clay-input').val(),
+    $('tony-input').val(),
+    $('vince-input').val(),
+    $('kelsey-input').val(),
+  `</p></td></tr>`) // end of append
 
-// empty the inputs 
-  $('clay-input').val(''),
-  $('tony-input').val(''),
-  $('vince-input').val(''),
+  // empty the inputs 
+    $('clay-input').val(''),
+    $('tony-input').val(''),
+    $('vince-input').val(''),
+    $('kelsey-input').val(),
+  
 
 }; // end of function
 

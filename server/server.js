@@ -17,11 +17,11 @@ app.use(express.static('server/public'));
 // }];
 
 
-app.get('/', function(req, res){
+app.get('/guess', function(req, res){
   res.send(inputArray); // <- this route will return the array in the ()
 })
 
-app.post("/", (req, res) => {
+app.post('/guess', (req, res) => {
   console.log("req.body from POST", req.body);
 
   // send back a status code of 201
