@@ -38,7 +38,12 @@ function randomNumberGenerator() {
   $.ajax({
     method: "POST",
     url: "/guess",
-    data: {group} 
+    data: {
+      nameOne: tony,
+      nameTwo: clay,
+      nameThree: vince,
+      nameFour: kelsey
+    }
   }).then(function(response){
     console.log('SUCCESS!');
     getInfo();
